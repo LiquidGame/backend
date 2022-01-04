@@ -73,6 +73,7 @@ export class WalletService {
         accessToken.replace('Bearer ', ''),
       );
       const wallets = await this.repo.find({ account_id: account.id });
+      if (!wallets || !wallets.length) return null;
 
       const btcAddress = wallets.find((item) => item.currency_id === 1).address;
       const ethAddress = wallets.find((item) => item.currency_id === 2).address;
