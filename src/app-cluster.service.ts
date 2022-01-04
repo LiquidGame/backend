@@ -1,5 +1,3 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
 import * as os from 'os';
 import { Injectable } from '@nestjs/common';
 import cluster from 'cluster';
