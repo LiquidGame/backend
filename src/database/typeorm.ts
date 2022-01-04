@@ -18,6 +18,7 @@ export default TypeOrmModule.forRootAsync({
     logging: configService.get('db.logging'),
     extra: { connectionLimit: configService.get('db.poolSize') },
     retryAttempts: 3,
+    ssl: { rejectUnauthorized: false },
   }),
   inject: [ConfigService],
 });
