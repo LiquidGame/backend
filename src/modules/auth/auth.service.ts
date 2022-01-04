@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 import { Account } from 'models/account.entity';
+import { AccountDTO } from './dtos/account.dto';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,7 @@ export class AuthService {
     return this.repo.findOne({ where: criterias });
   }
 
-  async signup(payload: Account) {
+  async signup(payload: AccountDTO) {
     try {
       const username = payload?.username?.toLowerCase();
       const password = await bcrypt.hash(payload?.password, 10);
@@ -40,7 +41,7 @@ export class AuthService {
     }
   }
 
-  async signin(payload: Account) {
+  async signin(payload: AccountDTO) {
     try {
       const username = payload?.username?.toLowerCase();
 

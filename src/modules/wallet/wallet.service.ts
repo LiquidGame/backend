@@ -9,6 +9,7 @@ import * as EthWallet from 'ethereumjs-wallet';
 
 import { Wallet } from 'models/wallet.entity';
 import { AuthService } from 'modules/auth/auth.service';
+import { CreateWalletDTO } from './dtos/wallet.post.dto';
 
 @Injectable()
 export class WalletService {
@@ -22,7 +23,7 @@ export class WalletService {
     this.bip32 = BIP32Factory(ecc);
   }
 
-  async import(accessToken: string, data: any) {
+  async import(accessToken: string, data: CreateWalletDTO) {
     try {
       const account: any = this.authService.decode(
         accessToken.replace('Bearer ', ''),

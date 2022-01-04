@@ -9,6 +9,7 @@ import {
 import { ApiHeader } from '@nestjs/swagger';
 
 import { JwtAuthGuard } from 'auth/jwt.guard';
+import { CreateWalletDTO } from './dtos/wallet.post.dto';
 import { WalletService } from './wallet.service';
 
 @Controller()
@@ -18,7 +19,10 @@ export class WalletController {
   @UseGuards(JwtAuthGuard)
   @ApiHeader({ name: 'Authorization' })
   @Post('import')
-  import(@Headers('Authorization') accessToken: string, @Body() data: any) {
+  import(
+    @Headers('Authorization') accessToken: string,
+    @Body() data: CreateWalletDTO,
+  ) {
     return this.service.import(accessToken, data);
   }
 
